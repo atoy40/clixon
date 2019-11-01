@@ -1,5 +1,12 @@
 # Clixon Changelog
 
+## 4.2.1 (Expected: Nov 2019)
+
+This is a hotfix for FreeBSD compiling.
+
+### Corrected Bugs
+* [Add missing includes](https://github.com/clicon/clixon/pulls)
+	
 ## 4.2.0 (October 27 2019)
 
 ### Summary
