@@ -42,8 +42,6 @@
 /* This include file requires the following include file dependencies */
 #include <stdio.h>
 #include <stdint.h>
-#include <stdlib.h>
-#include <string.h>
 #include <dirent.h>
 #include <sys/socket.h>
 #include <net/if.h>

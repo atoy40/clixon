@@ -2,7 +2,7 @@
 
 ## 4.2.1 (Expected: Nov 2019)
 
-This is a hotfix for FreeBSD compiling.
+This is a hotfix for inline compiling clixon_string.h
 
 ### Corrected Bugs
 * [Add missing includes](https://github.com/clicon/clixon/pulls)
