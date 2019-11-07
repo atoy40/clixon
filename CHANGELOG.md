@@ -2,8 +2,11 @@
 
 ## 4.2.1 (Expected: Nov 2019)
 
-This is a hotfix for inline compiling clixon_string.h
+Minor errors to get a good 4.2 release.
 
+### Minor changes
+* Add warning log for invalid user state callback calls. For debugging.
+	
 ### Corrected Bugs
 * [Add missing includes](https://github.com/clicon/clixon/pulls)
 	
