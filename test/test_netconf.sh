@@ -102,7 +102,7 @@ cat <<EOF > $tmp # new
 EOF
 
 new "netconf get config xpath"
-expecteof "$clixon_netconf -qf $cfg" 0 "$(cat $tmp)" '^<rpc-reply><data><interfaces xmlns="urn:ietf:params:xml:ns:yang:ietf-interfaces"><interface xmlns:ip="urn:ietf:params:xml:ns:yang:ietf-ip"><name>eth1</name><enabled>true</enabled></interface></interfaces></data></rpc-reply>]]>]]>$'
+expecteof "$clixon_netconf -qf $cfg" 0 "$(cat $tmp)" '^<rpc-reply><data><interfaces xmlns="urn:ietf:params:xml:ns:yang:ietf-interfaces"><interface><name>eth1</name><enabled>true</enabled></interface></interfaces></data></rpc-reply>]]>]]>$'
 
 # Too many quotes
 cat <<EOF > $tmp # new
@@ -110,7 +110,7 @@ cat <<EOF > $tmp # new
 EOF
 
 new "netconf get config xpath parent"
-expecteof "$clixon_netconf -qf $cfg" 0 "$(cat $tmp)" '^<rpc-reply><data><interfaces xmlns="urn:ietf:params:xml:ns:yang:ietf-interfaces"><interface><name>eth/0/0</name><enabled>true</enabled></interface><interface xmlns:ip="urn:ietf:params:xml:ns:yang:ietf-ip"><name>eth1</name><enabled>true</enabled><ip:ipv4><ip:enabled>true</ip:enabled><ip:forwarding>false</ip:forwarding><ip:address><ip:ip>9.2.3.4</ip:ip><ip:prefix-length>24</ip:prefix-length></ip:address></ip:ipv4></interface></interfaces></data></rpc-reply>]]>]]>$'
+expecteof "$clixon_netconf -qf $cfg" 0 "$(cat $tmp)" '^<rpc-reply><data><interfaces xmlns="urn:ietf:params:xml:ns:yang:ietf-interfaces"><interface><name>eth/0/0</name><enabled>true</enabled></interface><interface><name>eth1</name><enabled>true</enabled><ip:ipv4 xmlns:ip="urn:ietf:params:xml:ns:yang:ietf-ip"><ip:enabled>true</ip:enabled><ip:forwarding>false</ip:forwarding><ip:address><ip:ip>9.2.3.4</ip:ip><ip:prefix-length>24</ip:prefix-length></ip:address></ip:ipv4></interface></interfaces></data></rpc-reply>]]>]]>$'
 
 new "netconf validate missing type"
 expecteof "$clixon_netconf -qf $cfg" 0 "<rpc><validate><source><candidate/></source></validate></rpc>]]>]]>" "^<rpc-reply><rpc-error>"

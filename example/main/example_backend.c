@@ -335,7 +335,7 @@ example_statedata(clicon_handle h,
 	    cprintf(cb, "<interfaces xmlns=\"urn:ietf:params:xml:ns:yang:ietf-interfaces\">");
 	    for (i=0; i<xlen; i++){
 		name = xml_body(xvec[i]);
-		cprintf(cb, "<interface><name>%s</name><oper-status>up</oper-status></interface>", name);
+		cprintf(cb, "<interface><name>%s</name><type>ex:eth</type><oper-status>up</oper-status></interface>", name);
 	    }
 	    cprintf(cb, "</interfaces>");
 	    if (xml_parse_string(cbuf_get(cb), NULL, &xstate) < 0)

@@ -5,10 +5,17 @@
 Minor errors to get a good 4.2 release.
 
 ### Minor changes
+* State callbacks provided by user are validated. If they are invalid an internal error is returned.
+* Fixed multi-namespace for augmented state which was not covered in 4.2.0.
 * Add warning log for invalid user state callback calls. For debugging.
-	
+
+### API changes on existing features (you may need to change your code)	
+* The multi-namespace augment state may rearrange the XML namespace attributes.
+
 ### Corrected Bugs
+* Mandatory variables can no longer be deleted.
 * [Add missing includes](https://github.com/clicon/clixon/pulls)
+
 	
 ## 4.2.0 (October 27 2019)
 

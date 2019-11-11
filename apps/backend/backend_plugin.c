@@ -133,13 +133,22 @@ clixon_plugin_statedata(clicon_handle    h,
 	if (ret > 0 && (ret = xml_yang_validate_add(h, x, &xerr)) < 0)
 	    goto done;
 	if (ret == 0){
-	    cbuf  *cberr = NULL;
+	    cbuf  *cberr = NULL; /* XXX Cumbersome, try to fold into one cb */
+	    cbuf  *cberr2 = NULL;
 	    if (netconf_err2cb(xpath_first(xerr, "rpc-error"), &cberr) < 0)
 		goto done;
-	    clicon_log(LOG_WARNING, "%s: Internal error: state callback returned invalid XML: %s", __FUNCTION__, cbuf_get(cberr));
+	    if ((cberr2 = cbuf_new()) == NULL){
+		clicon_err(OE_UNIX, errno, "cbuf_new");
+		goto done;
+	    }
+	    cprintf(cberr2, "Internal error: state callback returned invalid XML: %s", cbuf_get(cberr));
+	    if (netconf_operation_failed_xml(xret, "application", cbuf_get(cberr2))< 0)
+		goto done;
 	    if (cberr)
 		cbuf_free(cberr);
-	    /* Dont fail just log warning */
+	    if (cberr2)
+		cbuf_free(cberr2);
+	    goto fail;
 	}
 	if ((ret = netconf_trymerge(x, yspec, xret)) < 0)
 	    goto done;
